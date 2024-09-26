@@ -1,0 +1,26 @@
+[project]
+name = "chemtech-codex"
+version = "1.0.0"
+dependencies = ["prettytable", "wcwidth"]
+requires-python = ">= 3.10"
+authors = [{ name = "Louis Raphael V. Panaligan" }]
+description = "My Empowerment Technologies performance task project."
+readme = "docs/README.md"
+license = { file = "COPYING.txt" }
+keywords = [
+  "acids",
+  "bases",
+  "calculator",
+  "chemical",
+  "chemistry",
+  "cli",
+  "equilibrium",
+  "kinetics",
+  "thermochemistry",
+]
+classifiers = [
+  "Private :: Do Not Upload",
+  "Development Status :: 5 - Stable",
+  "License :: OSI Approved :: GPL-3.0 License",
+  "Programming Language :: Python :: 3.10",
+]

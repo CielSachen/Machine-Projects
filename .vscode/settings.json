@@ -1,0 +1,32 @@
+{
+  /* Text Editor */
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  /* Text Editor - Formatting */
+  "editor.formatOnSave": true,
+  /* Text Editor - Files */
+  "files.insertFinalNewline": true,
+
+  /* Prettier Extension */
+  "prettier.printWidth": 120,
+  /* Pylance Extension */
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.fixAll": ["source.unusedImports"],
+  "python.analysis.typeCheckingMode": "strict",
+  /* Ruff Extension */
+  "ruff.configuration": "./ruff.toml",
+  "ruff.lineLength": 120,
+
+  /* Python Files Only */
+  "[python]": {
+    /* Text Editor */
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4
+  }
+}

@@ -1,0 +1,17 @@
+# IDE: Visual Studio Code Settings Directory
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Python: Virtual Environment Directory
+env/
+venv/
+.env/
+.venv/
+
+# Python: Generated Program Results
+results.txt
+
+# Miscellaneous
+**/.DS_Store
