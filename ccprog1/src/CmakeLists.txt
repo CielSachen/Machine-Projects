@@ -1,0 +1,7 @@
+add_executable(ccprog1 main.c)
+
+target_include_directories(ccprog1 PUBLIC ${HEADER_DIR})
+target_link_libraries(ccprog1 PUBLIC console PUBLIC prompts PUBLIC text-graphics PUBLIC trading)
+target_compile_options(ccprog1 PRIVATE ${C_FLAGS})
+target_compile_features(ccprog1 PRIVATE ${C_STD})
+set_target_properties(ccprog1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)

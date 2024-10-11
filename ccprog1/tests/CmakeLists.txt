@@ -1,0 +1,30 @@
+add_executable(console-test console-test.cpp)
+
+target_include_directories(console-test PUBLIC ${HEADER_DIR})
+target_link_libraries(console-test PUBLIC GTest::gtest_main PUBLIC console)
+target_compile_options(console-test PRIVATE ${CXX_FLAGS})
+target_compile_features(console-test PRIVATE ${CXX_STD})
+
+add_executable(prompts-test prompts-test.cpp)
+
+target_include_directories(prompts-test PUBLIC ${HEADER_DIR})
+target_link_libraries(prompts-test PUBLIC GTest::gtest_main PUBLIC prompts)
+target_compile_options(prompts-test PRIVATE ${CXX_FLAGS})
+target_compile_features(prompts-test PRIVATE ${CXX_STD})
+
+add_custom_target(prompts-test-mocks COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/mocks
+                  ${CMAKE_CURRENT_BINARY_DIR}/mocks)
+add_dependencies(prompts-test prompts-test-mocks)
+
+add_executable(trading-test trading-test.cpp)
+
+target_include_directories(trading-test PUBLIC ${HEADER_DIR})
+target_link_libraries(trading-test PUBLIC GTest::gtest_main PUBLIC trading)
+target_compile_options(trading-test PRIVATE ${CXX_FLAGS})
+target_compile_features(trading-test PRIVATE ${CXX_STD})
+
+include(GoogleTest)
+
+gtest_discover_tests(console-test)
+gtest_discover_tests(prompts-test)
+gtest_discover_tests(trading-test)

@@ -9,6 +9,12 @@
   /* Text Editor - Files */
   "files.insertFinalNewline": true,
 
+  /* C/C++ Extension - Intellisense */
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, BreakStringLiterals: false, ColumnLimit: 120, ContinuationIndentWidth: 2 }",
+  /* CMake Tools Extension */
+  "cmake.sourceDirectory": ["${workspaceFolder}/ccprog1"],
+  /* Makefile Tools Extension */
+  "makefile.makefilePath": "./build/Makefile",
   /* Prettier Extension */
   "prettier.printWidth": 120,
   /* Pylance Extension */
@@ -19,13 +25,16 @@
   "ruff.configuration": "./ruff.toml",
   "ruff.lineLength": 120,
 
+  /* C Files Only */
+  "[c][cpp]": {
+    /* Text Editor */
+    "editor.codeActionsOnSave": { "source.fixAll": "explicit", "source.organizeImports": "explicit" },
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
   /* Python Files Only */
   "[python]": {
     /* Text Editor */
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit",
-      "source.organizeImports": "explicit"
-    },
+    "editor.codeActionsOnSave": { "source.fixAll": "explicit", "source.organizeImports": "explicit" },
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.tabSize": 4
   }
