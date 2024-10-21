@@ -2,7 +2,7 @@
 
 # ChemTech Codex
 
-![Python Current](https://img.shields.io/badge/Python-%3E%3D3.10-blue?style=flat-square)
+![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue?style=flat-square)
 [![Ruff](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fastral-sh%2Fruff%2Fmain%2Fassets%2Fbadge%2Fv2.json&style=flat-square)](https://github.com/astral-sh/ruff)
 
 ChemTech Codex is a simple CLI-based calculator that solves and integrates General Chemistry 2 concepts. It takes inputs from the user and uses predetermined formulas to calculate values. The following General Chemistry 2 topics are covered:
@@ -14,13 +14,13 @@ ChemTech Codex is a simple CLI-based calculator that solves and integrates Gener
 
 ## Usage
 
-> Instructions on how to use this program will be provided along the way.
-
 ```bash
 python3 main.py
 ```
 
-## Example
+### Example
+
+Here's a simple example of calculating the standard enthalpy of the reaction, standard entropy of the reaction, and entropy of the universe of the equation N₂ + 3H₂ → 2NH₃:
 
 ![Result Example](./assets/example_result.png)
 

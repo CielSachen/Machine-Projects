@@ -1,10 +1,10 @@
-# Machine Programs
+# Machine Projects
 
-A monorepo containing all the _**machine programs**_ that I have created throughout senior high school and university.
+A monorepo containing all the _**machine projects**_ that I have created throughout senior high school and university.
 
 ## Monorepo Directory Structure
 
-The source codes of the machine programs in this monorepo are in directories named after their subjects/courses.
+The source codes of the machine projects in this monorepo are in directories named after their subjects/courses.
 
 ### De La Salle Santiago Zobel School
 
