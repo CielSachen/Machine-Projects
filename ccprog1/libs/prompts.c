@@ -31,7 +31,7 @@ int promptForPlayerId(void) {
   do {
     nPlayerId = getIntegerInput(nLeftPaddingSize);
 
-    if (nPlayerId < 0 || nPlayerId > 999) {
+    if (nPlayerId < MINIMUM_PLAYER_ID_VALUE || nPlayerId > MAXIMUM_PLAYER_ID_VALUE) {
       setConsoleColorToRed();
       printf("%*cPlease only enter an integer within the range of 0 - 999!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -61,7 +61,7 @@ int promptForInitialBalance(void) {
   do {
     nPlayerInitialBalance = getIntegerInput(nLeftPaddingSize);
 
-    if (nPlayerInitialBalance < 1) {
+    if (nPlayerInitialBalance < MINIMUM_INITIAL_BALANCE) {
       setConsoleColorToRed();
       printf("%*cPlease only enter an integer greater than 0!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -91,7 +91,7 @@ int promptForProfitTarget(void) {
   do {
     nPlayerProfitTarget = getIntegerInput(nLeftPaddingSize);
 
-    if (nPlayerProfitTarget < 20) {
+    if (nPlayerProfitTarget < MINIMUM_TARGET_PROFIT) {
       setConsoleColorToRed();
       printf("%*cPlease only enter an integer greater than or equal to 20!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -121,7 +121,7 @@ int promptForConfirmation(void) {
   do {
     cPlayerHadConfirmed = toupper(getCharacterInput(nLeftPaddingSize));
 
-    if (cPlayerHadConfirmed != 'Y' && cPlayerHadConfirmed != 'N') {
+    if (cPlayerHadConfirmed != YES_ID && cPlayerHadConfirmed != NO_ID) {
       setConsoleColorToRed();
       printf("%*cPlease only enter one of the provided character options!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -130,7 +130,7 @@ int promptForConfirmation(void) {
     }
   } while (!bInputIsValid);
 
-  if (cPlayerHadConfirmed == 'Y') {
+  if (cPlayerHadConfirmed == YES_ID) {
     return 1;
   } else {
     return 0;
@@ -191,31 +191,33 @@ char promptForActionId(int nShipTotalCargoAmount, int nShipCargoLimit, int nPlay
   do {
     cChosenActionId = toupper(getCharacterInput(nLeftPaddingSize));
 
-    if (cChosenActionId != 'B' && cChosenActionId != 'S' && cChosenActionId != 'U' && cChosenActionId != 'N' &&
-        cChosenActionId != 'Q') {
+    if (cChosenActionId != BUY_ACTION_ID && cChosenActionId != SELL_ACTION_ID && cChosenActionId != UPGRADE_ACTION_ID &&
+        cChosenActionId != NAVIGATE_ACTION_ID && cChosenActionId != QUIT_ACTION_ID) {
       setConsoleColorToRed();
       printf("%*cPlease only enter one of the provided character options!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenActionId == 'B' && nShipTotalCargoAmount == nShipCargoLimit) {
+    } else if (cChosenActionId == BUY_ACTION_ID && nShipTotalCargoAmount == nShipCargoLimit) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough storage to buy more cargo!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenActionId == 'B' && (nPlayerBalance <= nCoconutMarketPrice && nPlayerBalance <= nRiceMarketPrice &&
-                                          nPlayerBalance <= nSilkMarketPrice && nPlayerBalance <= nGunMarketPrice)) {
+    } else if (cChosenActionId == BUY_ACTION_ID &&
+               (nPlayerBalance <= nCoconutMarketPrice && nPlayerBalance <= nRiceMarketPrice &&
+                nPlayerBalance <= nSilkMarketPrice && nPlayerBalance <= nGunMarketPrice)) {
       setConsoleColorToRed();
       printf("%*cYou can't afford to buy any cargo!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenActionId == 'S' && nShipTotalCargoAmount == 0) {
+    } else if (cChosenActionId == SELL_ACTION_ID && nShipTotalCargoAmount == 0) {
       setConsoleColorToRed();
       printf("%*cYou have no cargo to sell!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenActionId == 'U' && nShipCargoLimit == TIER_FOUR_SHIP_CARGO_LIMIT) {
+    } else if (cChosenActionId == UPGRADE_ACTION_ID && nShipCargoLimit == TIER_FOUR_SHIP_CARGO_LIMIT) {
       setConsoleColorToRed();
       printf("%*cYour ship is already in the highest tier!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenActionId == 'U' && ((nShipCargoLimit == 75 && nPlayerBalance < TIER_TWO_SHIP_UPGRADE_COST) ||
-                                          (nShipCargoLimit == 150 && nPlayerBalance < TIER_THREE_SHIP_UPGRADE_COST) ||
-                                          (nShipCargoLimit == 225 && nPlayerBalance < TIER_FOUR_SHIP_UPGRADE_COST))) {
+    } else if (cChosenActionId == UPGRADE_ACTION_ID &&
+               ((nShipCargoLimit == 75 && nPlayerBalance < TIER_TWO_SHIP_UPGRADE_COST) ||
+                (nShipCargoLimit == 150 && nPlayerBalance < TIER_THREE_SHIP_UPGRADE_COST) ||
+                (nShipCargoLimit == 225 && nPlayerBalance < TIER_FOUR_SHIP_UPGRADE_COST))) {
       setConsoleColorToRed();
       printf("%*cYou can't afford to upgrade your ship!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -249,14 +251,14 @@ char promptForCargoId(char cTransactionType, int nPlayerBalance, int nCoconutMar
   int nLeftPaddingSize = 64;
 
   // Print out the correct prompt.
-  if (cTransactionType == 'B') {
+  if (cTransactionType == BUY_ACTION_ID) {
     printf("%*cWhat would you like to buy?\n", nLeftPaddingSize, ' ');
   } else {
     printf("%*cWhat would you like to sell?\n", nLeftPaddingSize, ' ');
   }
 
   // Print out all viable cargo ID choices.
-  if (cTransactionType == 'B') {
+  if (cTransactionType == BUY_ACTION_ID) {
     if (nPlayerBalance > nCoconutMarketPrice) printf("%*c‣ [C] Coconut\n", nLeftPaddingSize, ' ');
 
     if (nPlayerBalance > nRiceMarketPrice) printf("%*c‣ [R] Rice\n", nLeftPaddingSize, ' ');
@@ -285,40 +287,44 @@ char promptForCargoId(char cTransactionType, int nPlayerBalance, int nCoconutMar
   do {
     cChosenCargoId = toupper(getCharacterInput(nLeftPaddingSize));
 
-    if (cChosenCargoId != 'C' && cChosenCargoId != 'R' && cChosenCargoId != 'S' && cChosenCargoId != 'G' &&
-        cChosenCargoId != 'X') {
+    if (cChosenCargoId != COCONUT_CARGO_ID && cChosenCargoId != RICE_CARGO_ID && cChosenCargoId != SILK_CARGO_ID &&
+        cChosenCargoId != GUN_CARGO_ID && cChosenCargoId != CANCEL_ACTION_ID) {
       setConsoleColorToRed();
       printf("%*cPlease only enter one of the provided character options!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cChosenCargoId == 'C' && nPlayerBalance < nCoconutMarketPrice) {
+    } else if (cTransactionType == BUY_ACTION_ID && cChosenCargoId == COCONUT_CARGO_ID &&
+               nPlayerBalance < nCoconutMarketPrice) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy a coconut!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cChosenCargoId == 'R' && nPlayerBalance < nRiceMarketPrice) {
+    } else if (cTransactionType == BUY_ACTION_ID && cChosenCargoId == RICE_CARGO_ID &&
+               nPlayerBalance < nRiceMarketPrice) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy rice!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cChosenCargoId == 'S' && nPlayerBalance < nSilkMarketPrice) {
+    } else if (cTransactionType == BUY_ACTION_ID && cChosenCargoId == SILK_CARGO_ID &&
+               nPlayerBalance < nSilkMarketPrice) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy silk!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cChosenCargoId == 'G' && nPlayerBalance < nGunMarketPrice) {
+    } else if (cTransactionType == BUY_ACTION_ID && cChosenCargoId == 'G' && nPlayerBalance < nGunMarketPrice) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy a gun!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cChosenCargoId == 'C' && nShipCoconutCargoAmount == 0) {
+    } else if (cTransactionType == SELL_ACTION_ID && cChosenCargoId == COCONUT_CARGO_ID &&
+               nShipCoconutCargoAmount == 0) {
       setConsoleColorToRed();
       printf("%*cYou do not have any coconuts to sell!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cChosenCargoId == 'R' && nShipRiceCargoAmount == 0) {
+    } else if (cTransactionType == SELL_ACTION_ID && cChosenCargoId == RICE_CARGO_ID && nShipRiceCargoAmount == 0) {
       setConsoleColorToRed();
       printf("%*cYou do not have any rice to sell!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cChosenCargoId == 'S' && nShipSilkCargoAmount == 0) {
+    } else if (cTransactionType == SELL_ACTION_ID && cChosenCargoId == SILK_CARGO_ID && nShipSilkCargoAmount == 0) {
       setConsoleColorToRed();
       printf("%*cYou do not have any silk to sell!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cChosenCargoId == 'G' && nShipGunCargoAmount == 0) {
+    } else if (cTransactionType == SELL_ACTION_ID && cChosenCargoId == GUN_CARGO_ID && nShipGunCargoAmount == 0) {
       setConsoleColorToRed();
       printf("%*cYou do not have any guns to sell!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -355,7 +361,7 @@ int promptForCargoAmount(char cTransactionType, char cCargoId, int nPlayerBalanc
   int nLeftPaddingSize = 57;
 
   // Print out the correct prompt.
-  if (cTransactionType == 'B') {
+  if (cTransactionType == BUY_ACTION_ID) {
     printf("%*cEnter the amount of cargo you want to buy\n", nLeftPaddingSize, ' ');
   } else {
     printf("%*cEnter the amount of cargo you want to sell\n", nLeftPaddingSize, ' ');
@@ -372,35 +378,40 @@ int promptForCargoAmount(char cTransactionType, char cCargoId, int nPlayerBalanc
       setConsoleColorToRed();
       printf("%*cPlease only enter an integer greater than 0!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cCargoId == 'C' && nPlayerBalance < (nCargoAmount * nCoconutMarketPrice)) {
+    } else if (cTransactionType == BUY_ACTION_ID && cCargoId == COCONUT_CARGO_ID &&
+               nPlayerBalance < (nCargoAmount * nCoconutMarketPrice)) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy %d coconuts!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cCargoId == 'R' && nPlayerBalance < (nCargoAmount * nRiceMarketPrice)) {
+    } else if (cTransactionType == BUY_ACTION_ID && cCargoId == RICE_CARGO_ID &&
+               nPlayerBalance < (nCargoAmount * nRiceMarketPrice)) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy %d rice!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cCargoId == 'S' && nPlayerBalance < (nCargoAmount * nSilkMarketPrice)) {
+    } else if (cTransactionType == BUY_ACTION_ID && cCargoId == SILK_CARGO_ID &&
+               nPlayerBalance < (nCargoAmount * nSilkMarketPrice)) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy %d silk!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'B' && cCargoId == 'G' && nPlayerBalance < (nCargoAmount * nGunMarketPrice)) {
+    } else if (cTransactionType == BUY_ACTION_ID && cCargoId == GUN_CARGO_ID &&
+               nPlayerBalance < (nCargoAmount * nGunMarketPrice)) {
       setConsoleColorToRed();
       printf("%*cYou do not have enough gold coins to buy %d guns!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cCargoId == 'C' && nShipCoconutCargoAmount < nCargoAmount) {
+    } else if (cTransactionType == SELL_ACTION_ID && cCargoId == COCONUT_CARGO_ID &&
+               nShipCoconutCargoAmount < nCargoAmount) {
       setConsoleColorToRed();
       printf("%*cYou do not have %d coconuts to sell!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cCargoId == 'R' && nShipRiceCargoAmount < nCargoAmount) {
+    } else if (cTransactionType == SELL_ACTION_ID && cCargoId == RICE_CARGO_ID && nShipRiceCargoAmount < nCargoAmount) {
       setConsoleColorToRed();
       printf("%*cYou do not have %d rice to sell!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cCargoId == 'S' && nShipSilkCargoAmount < nCargoAmount) {
+    } else if (cTransactionType == SELL_ACTION_ID && cCargoId == SILK_CARGO_ID && nShipSilkCargoAmount < nCargoAmount) {
       setConsoleColorToRed();
       printf("%*cYou do not have %d silk to sell!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
-    } else if (cTransactionType == 'S' && cCargoId == 'G' && nShipGunCargoAmount < nCargoAmount) {
+    } else if (cTransactionType == SELL_ACTION_ID && cCargoId == GUN_CARGO_ID && nShipGunCargoAmount < nCargoAmount) {
       setConsoleColorToRed();
       printf("%*cYou do not have %d guns to sell!\n", nLeftPaddingSize, ' ', nCargoAmount);
       resetConsoleColor();
@@ -450,7 +461,7 @@ int promptForShipUpgrade(int nShipCurrentCargoLimit, int nPlayerBalance) {
   do {
     cPlayerIsUpgrading = toupper(getCharacterInput(nLeftPaddingSize));
 
-    if (cPlayerIsUpgrading != 'Y' && cPlayerIsUpgrading != 'N') {
+    if (cPlayerIsUpgrading != YES_ID && cPlayerIsUpgrading != NO_ID) {
       setConsoleColorToRed();
       printf("%*cPlease only enter one of the provided character options!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
@@ -466,7 +477,7 @@ int promptForShipUpgrade(int nShipCurrentCargoLimit, int nPlayerBalance) {
     }
   } while (!bInputIsValid);
 
-  if (cPlayerIsUpgrading == 'Y') {
+  if (cPlayerIsUpgrading == YES_ID) {
     return 1;
   } else {
     return 0;
@@ -505,24 +516,24 @@ char promptForPortId(char cCurrentPortId) {
   do {
     cChosenPortId = toupper(getCharacterInput(nLeftPaddingSize));
 
-    if (cChosenPortId != 'T' && cChosenPortId != 'M' && cChosenPortId != 'P' && cChosenPortId != 'S' &&
-        cChosenPortId != 'X') {
+    if (cChosenPortId != TONDO_PORT_ID && cChosenPortId != MANILA_PORT_ID && cChosenPortId != PANDAKAN_PORT_ID &&
+        cChosenPortId != SAPA_PORT_ID && cChosenPortId != CANCEL_ACTION_ID) {
       setConsoleColorToRed();
       printf("%*cPlease only enter one of the provided character options!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenPortId == 'T' && cCurrentPortId == 'T') {
+    } else if (cChosenPortId == TONDO_PORT_ID && cCurrentPortId == TONDO_PORT_ID) {
       setConsoleColorToRed();
       printf("%*cYou are already in the port of Tondo!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenPortId == 'M' && cCurrentPortId == 'M') {
+    } else if (cChosenPortId == MANILA_PORT_ID && cCurrentPortId == MANILA_PORT_ID) {
       setConsoleColorToRed();
       printf("%*cYou are already in the port of Manila!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenPortId == 'P' && cCurrentPortId == 'P') {
+    } else if (cChosenPortId == PANDAKAN_PORT_ID && cCurrentPortId == PANDAKAN_PORT_ID) {
       setConsoleColorToRed();
       printf("%*cYou are already in the port of Pandakan!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();
-    } else if (cChosenPortId == 'S' && cCurrentPortId == 'S') {
+    } else if (cChosenPortId == SAPA_PORT_ID && cCurrentPortId == SAPA_PORT_ID) {
       setConsoleColorToRed();
       printf("%*cYou are already in the port of Sapa!\n", nLeftPaddingSize, ' ');
       resetConsoleColor();

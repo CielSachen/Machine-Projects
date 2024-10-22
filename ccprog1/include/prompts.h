@@ -9,6 +9,33 @@
 #ifndef CCPROG1_PROMPTS_H_
 #define CCPROG1_PROMPTS_H_
 
+#define MINIMUM_PLAYER_ID_VALUE 0
+#define MAXIMUM_PLAYER_ID_VALUE 999
+
+#define MINIMUM_INITIAL_BALANCE 1
+
+#define MINIMUM_TARGET_PROFIT 20
+
+#define YES_ID 'Y'
+#define NO_ID 'N'
+
+#define BUY_ACTION_ID 'B'
+#define SELL_ACTION_ID 'S'
+#define UPGRADE_ACTION_ID 'U'
+#define NAVIGATE_ACTION_ID 'N'
+#define QUIT_ACTION_ID 'Q'
+#define CANCEL_ACTION_ID 'X'
+
+#define COCONUT_CARGO_ID 'C'
+#define RICE_CARGO_ID 'R'
+#define SILK_CARGO_ID 'S'
+#define GUN_CARGO_ID 'G'
+
+#define TONDO_PORT_ID 'T'
+#define MANILA_PORT_ID 'M'
+#define PANDAKAN_PORT_ID 'P'
+#define SAPA_PORT_ID 'S'
+
 /**
  * Prompts the player to input their preferred merchant ID.
  * @returns An integer value within the range of `0` and `999`.

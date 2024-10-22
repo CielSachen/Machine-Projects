@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 #include "console.h"
+#include "prompts.h"
 #include "trading.h"
 
 /** Prints out a pre-formatted separator line to the console. */
@@ -226,7 +227,7 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
 
   switch (cCargoId) {
     case 'C': {
-      if (cTransactionType == 'B') {
+      if (cTransactionType == BUY_ACTION_ID) {
         printf(
           "                                         ▗▄▄▖ ▗▄▖  ▗▄▄▖ ▗▄▖ ▗▖  ▗▖▗▖ ▗▖▗▄▄▄▖ ▗▄▄▖    ▗▄▄▖  ▗▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖\n"
           "                                        ▐▌   ▐▌ ▐▌▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌ ▐▌  █  ▐▌       ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  █\n"
@@ -261,7 +262,7 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
       break;
     }
     case 'R': {
-      if (cTransactionType == 'B') {
+      if (cTransactionType == BUY_ACTION_ID) {
         printf(
           "                                                   ▗▄▄▖ ▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖    ▗▄▄▖  ▗▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖\n"
           "                                                   ▐▌ ▐▌  █  ▐▌   ▐▌       ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  █\n"
@@ -296,7 +297,7 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
       break;
     }
     case 'S': {
-      if (cTransactionType == 'B') {
+      if (cTransactionType == BUY_ACTION_ID) {
         printf(
           "                                                    ▗▄▄▖▗▄▄▄▖▗▖   ▗▖ ▗▖    ▗▄▄▖  ▗▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖\n"
           "                                                   ▐▌     █  ▐▌   ▐▌▗▞▘    ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  █\n"
@@ -331,7 +332,7 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
       break;
     }
     case 'G': {
-      if (cTransactionType == 'B') {
+      if (cTransactionType == BUY_ACTION_ID) {
         printf(
           "                                                   ▗▄▄▖▗▖ ▗▖▗▖  ▗▖ ▗▄▄▖    ▗▄▄▖  ▗▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖\n"
           "                                                  ▐▌   ▐▌ ▐▌▐▛▚▖▐▌▐▌       ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌ ▐▌  █\n"
@@ -367,7 +368,7 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
     }
   }
 
-  if (cTransactionType == 'B') {
+  if (cTransactionType == BUY_ACTION_ID) {
     setConsoleColorToRed();
     printf("%*c• You spent %d gold coins!\n", nLeftPaddingSize, ' ', nCargoPrice);
     resetConsoleColor();

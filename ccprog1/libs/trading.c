@@ -9,6 +9,7 @@
 
 #include <stdlib.h>
 
+#include "prompts.h"
 #include "text-graphics.h"
 
 /**
@@ -35,7 +36,7 @@ int generateRandomPrice(int nMinimumPrice, int nMaximumPrice) {
  */
 void tradeCargo(char cTransactionType, char cCargoId, int *nPlayerBalance, int nCargoPrice, int nCargoAmount,
                 int *nShipCargoAmount) {
-  if (cTransactionType == 'B') {
+  if (cTransactionType == BUY_ACTION_ID) {
     *nPlayerBalance -= (nCargoPrice * nCargoAmount);
     *nShipCargoAmount += nCargoAmount;
   } else {

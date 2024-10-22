@@ -4,21 +4,21 @@ target_include_directories(console PUBLIC ${HEADER_DIR})
 target_compile_options(console PRIVATE ${C_FLAGS})
 target_compile_features(console PRIVATE ${C_STD})
 
-add_library(prompts prompts.c trading.c console.c)
+add_library(prompts prompts.c console.c trading.c)
 
 target_include_directories(prompts PUBLIC ${HEADER_DIR})
 target_link_libraries(prompts PUBLIC trading PUBLIC console)
 target_compile_options(prompts PRIVATE ${C_FLAGS})
 target_compile_features(prompts PRIVATE ${C_STD})
 
-add_library(text-graphics text-graphics.c trading.c console.c)
+add_library(text-graphics text-graphics.c console.c prompts.c trading.c)
 
 target_include_directories(text-graphics PUBLIC ${HEADER_DIR})
 target_link_libraries(text-graphics PUBLIC trading PUBLIC console)
 target_compile_options(text-graphics PRIVATE ${C_FLAGS})
 target_compile_features(text-graphics PRIVATE ${C_STD})
 
-add_library(trading trading.c text-graphics.c)
+add_library(trading trading.c prompts.c text-graphics.c)
 
 target_include_directories(trading PUBLIC ${HEADER_DIR})
 target_link_libraries(trading PUBLIC text-graphics)
