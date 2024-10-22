@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15...3.30)
 
 project(
-  AMerchantsQuest 
+  A_MerchantsQuest 
   VERSION 1.0.0
   DESCRIPTION "My Logic Formulation and Introductory Programming (CCIPROG1) machine program project." 
   LANGUAGES C CXX)
