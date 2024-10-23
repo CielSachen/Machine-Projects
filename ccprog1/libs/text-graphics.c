@@ -381,11 +381,11 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
 
   if (cTransactionType == BUY_ACTION_ID) {
     setConsoleColorToRed();
-    printf("%*c• You spent %d gold coins!\n", nLeftPaddingSize, ' ', nCargoPrice);
+    printf("%*c• You spent %d gold coins!\n", nLeftPaddingSize, ' ', nCargoPrice * nCargoAmount);
     resetConsoleColor();
   } else {
     setConsoleColorToGreen();
-    printf("%*c• You earned %d gold coins!\n", nLeftPaddingSize, ' ', nCargoPrice);
+    printf("%*c• You earned %d gold coins!\n", nLeftPaddingSize, ' ', nCargoPrice * nCargoAmount);
     resetConsoleColor();
   }
 
