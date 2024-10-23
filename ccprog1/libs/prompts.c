@@ -82,7 +82,7 @@ int promptForInitialBalance(void) {
 int promptForProfitTarget(void) {
   int nLeftPaddingSize = 62;
 
-  printf("%*cEnter your target profit (> 20)\n", nLeftPaddingSize, ' ');
+  printf("%*cEnter your target profit (>= 20)\n", nLeftPaddingSize, ' ');
 
   int nPlayerProfitTarget;
   // If the profit target the player provided is invalid, repeatedly make the player input a new one until it's valid.
