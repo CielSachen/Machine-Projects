@@ -123,10 +123,20 @@ void printMainScreen(int nPlayerTurns, char cPortId, int nPlayerId, int nPlayerB
   printf("\n\n");
 
   printf(
-    "   • Merchant ID: %3d                                                                                              • %d Gold Coins\n"
-    "   • %d%% Profit\n"
-    "   • %d%% Target Profit\n",
-    nPlayerId, nPlayerBalance, nPlayerProfit, nPlayerProfitTarget);
+    "   • Merchant ID: %3d                                                                                              • Balance: %d Gold Coins\n"
+    "   • Profit:",
+    nPlayerId, nPlayerBalance);
+
+  if (nPlayerProfit >= nPlayerProfitTarget) {
+    setConsoleColorToGreen();
+  } else {
+    setConsoleColorToRed();
+  }
+
+  printf(" %d%%\n", nPlayerProfit);
+  resetConsoleColor();
+
+  printf("   • Target Profit %d%%\n", nPlayerProfitTarget);
 
   printf("\n\n");
 
@@ -331,7 +341,8 @@ void printTransactionScreen(char cTransactionType, char cCargoId, int nCargoAmou
 
       break;
     }
-    case 'G': {
+    // Set to default instead of 'G' to satisfy the compiler
+    default: {
       if (cTransactionType == BUY_ACTION_ID) {
         printf(
           "                                                   ▗▄▄▖▗▖ ▗▖▗▖  ▗▖ ▗▄▄▖    ▗▄▄▖  ▗▄▖ ▗▖ ▗▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖\n"
@@ -509,8 +520,17 @@ void printGameEndScreen(int nPlayerFinalProfit, int nPlayerProfitTarget, int nPl
     nLeftPaddingSize = 44;
   }
 
-  printf("%*c• Final profit made: %d%% (%d gold coins)\n", nLeftPaddingSize, ' ', nPlayerFinalProfit,
-         nPlayerFinalBalance - nPlayerInitialBalance);
+  printf("%*c• Final profit made:", nLeftPaddingSize, ' ');
+
+  if (nPlayerFinalProfit >= nPlayerProfitTarget) {
+    setConsoleColorToGreen();
+  } else {
+    setConsoleColorToRed();
+  }
+
+  printf(" %d%% (%d gold coins)\n", nPlayerFinalProfit, nPlayerFinalBalance - nPlayerInitialBalance);
+  resetConsoleColor();
+
   printf("%*c• Number of turns (days) exhausted: %d\n", nLeftPaddingSize, ' ', nPlayerFinalTurns);
 
   printf("\n\n\n");
