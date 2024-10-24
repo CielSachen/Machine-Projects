@@ -110,6 +110,7 @@ char promptForCargoId(char cTransactionType, int nPlayerBalance, int nCoconutMar
  * Prompts the player to input the amount of cargo they want to trade.
  * @param cTransactionType The type of transaction to make.
  * @pre @p cTransactionType must have a character value of either `'B'` or `'S'`.
+ * @param nShipCargoLimit The maximum amount of cargo that the ship can carry.
  * @param cCargoId The ID of the traded cargo.
  * @pre @p cCargoId must have a character value of `'C'`, `'R'`, `'S'`, or `'G'`.
  * @param nPlayerBalance The player's gold coin balance.
@@ -125,9 +126,10 @@ char promptForCargoId(char cTransactionType, int nPlayerBalance, int nCoconutMar
  * @bug Inputting a character or a string, or even just a long integer or float, as a response will result in an
  * infinite loop because the buffer cannot be cleared with any of the prescribed functions.
  */
-int promptForCargoAmount(char cTransactionType, char cCargoId, int nPlayerBalance, int nCoconutMarketPrice,
-                         int nRiceMarketPrice, int nSilkMarketPrice, int nGunMarketPrice, int nShipCoconutCargoAmount,
-                         int nShipRiceCargoAmount, int nShipSilkCargoAmount, int nShipGunCargoAmount);
+int promptForCargoAmount(char cTransactionType, int nShipCargoLimit, char cCargoId, int nPlayerBalance,
+                         int nCoconutMarketPrice, int nRiceMarketPrice, int nSilkMarketPrice, int nGunMarketPrice,
+                         int nShipCoconutCargoAmount, int nShipRiceCargoAmount, int nShipSilkCargoAmount,
+                         int nShipGunCargoAmount);
 
 /**
  * Prompts the player to input a confirmation on whether they want to upgrade their ship or not.

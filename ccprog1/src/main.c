@@ -166,9 +166,10 @@ int main(void) {
         if (cChosenCargoId != 'X') {
           printf("\n");
 
-          int nCargoAmount = promptForCargoAmount(
-            cChosenActionId, cChosenCargoId, nPlayerBalance, nCoconutMarketPrice, nRiceMarketPrice, nSilkMarketPrice,
-            nGunMarketPrice, nShipCoconutCargoAmount, nShipRiceCargoAmount, nShipSilkCargoAmount, nShipGunCargoAmount);
+          int nCargoAmount =
+            promptForCargoAmount(cChosenActionId, nShipCargoLimit, cChosenCargoId, nPlayerBalance, nCoconutMarketPrice,
+                                 nRiceMarketPrice, nSilkMarketPrice, nGunMarketPrice, nShipCoconutCargoAmount,
+                                 nShipRiceCargoAmount, nShipSilkCargoAmount, nShipGunCargoAmount);
 
           printf("\n");
 

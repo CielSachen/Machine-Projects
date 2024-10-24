@@ -271,9 +271,9 @@ TEST(PromptForCargoAmountTest, ReturnsGivenInteger) {
 
   verify_file_reopening(mock_inputs_file);
 
-  int given_cargo_amount =
-    promptForCargoAmount(kTransactionType, kCargoId, kPlayerBalance, kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice,
-                         kShipCargoAmount, kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
+  int given_cargo_amount = promptForCargoAmount(kTransactionType, kShipCargoLimit, kCargoId, kPlayerBalance,
+                                                kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice, kShipCargoAmount,
+                                                kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
 
   fclose(mock_inputs_file);
 
@@ -286,9 +286,9 @@ TEST(PromptForCargoAmountTest, ReturnsGivenBigInteger) {
 
   verify_file_reopening(mock_inputs_file);
 
-  int given_cargo_amount =
-    promptForCargoAmount(kTransactionType, kCargoId, kPlayerBalance, kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice,
-                         kShipCargoAmount, kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
+  int given_cargo_amount = promptForCargoAmount(kTransactionType, kShipCargoLimit, kCargoId, kPlayerBalance,
+                                                kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice, kShipCargoAmount,
+                                                kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
 
   fclose(mock_inputs_file);
 
@@ -301,9 +301,9 @@ TEST(PromptForCargoAmountTest, RetriesWhenIntegerIsNegative) {
 
   verify_file_reopening(mock_inputs_file);
 
-  int given_cargo_amount =
-    promptForCargoAmount(kTransactionType, kCargoId, kPlayerBalance, kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice,
-                         kShipCargoAmount, kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
+  int given_cargo_amount = promptForCargoAmount(kTransactionType, kShipCargoLimit, kCargoId, kPlayerBalance,
+                                                kCargoPrice, kCargoPrice, kCargoPrice, kCargoPrice, kShipCargoAmount,
+                                                kShipCargoAmount, kShipCargoAmount, kShipCargoAmount);
 
   fclose(mock_inputs_file);
 
